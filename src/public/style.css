@@ -162,6 +162,7 @@ a:hover {
 
 footer {
   text-align: center;
+  width: 100%;
 }
 
 section {
@@ -262,6 +263,7 @@ p {
 
   footer {
     margin-left: 1rem;
+    width: 800px;
   }
 
   .projects {
