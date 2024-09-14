@@ -1,0 +1,153 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+/*
+
+
+    font-family: 'Lato', sans-serif;
+
+    font-family: 'Open Sans', sans-serif;
+
+
+*/
+
+html {
+    font-size: 10px;
+    
+}
+
+#body_header {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow-x: hidden;
+    object-fit: scale-down;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#body_header img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -4;
+}
+
+#body_header #header_container {
+    color: white;
+    text-align: center;
+}
+
+#body_header #header_container h1 {
+    position: absolute;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 5em;
+    left: 0; 
+    right: 0;
+    margin-left: auto; 
+    margin-right: auto;
+    top: 40vh; 
+}
+
+#body_header #header_container #arrow_hitbox i {
+    margin-top: 5vw;
+    transition-duration: 300ms;
+}
+
+#body_header #header_container #arrow_hitbox:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+#arrow_hitbox {
+    border: 10px, solid, black;
+    position: absolute;
+    font-size: 3.5em;
+    bottom: 6vh;
+    left: 0; 
+    right: 0;
+    margin-left: auto; 
+    margin-right: auto;
+    width: 40vw;
+    height: 10vh;
+    text-align: center;
+}
+
+main {
+    position: relative;
+    /*height: 100vh;*/
+    height: 100%;
+    background-color: #161616;
+    margin-top: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #e9e9e9;
+    font-family: 'Lato', sans-serif;
+    font-size: 2.3em;
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+main section .section_header {
+    font-size: 8vh;
+    margin-top: 2vh;
+    padding-bottom: 4vh;
+    border-bottom: 2px solid white;
+    margin-bottom: 2vh;
+}
+
+.basic_article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 75vw;
+    margin-top: 4vh;
+    margin-bottom: 8vh;
+}
+
+.basic_article img {
+    width: 220px;
+    height: auto;
+}
+
+.basic_article div {
+    text-align: center;
+    color: #cccccc;
+}
+
+.basic_article div header {
+    margin-bottom: 3vh;
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+footer {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    z-index: 10;
+    height: 50vh;
+    background-color: #822727;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    font-size: 2.5vh;
+}
+
+footer img {
+    margin-bottom: 6vh;
+    width: 68px;
+}

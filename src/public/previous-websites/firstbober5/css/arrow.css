@@ -1,0 +1,14 @@
+.animated-arrow { 
+    animation: bounce_7775 2s ease infinite; 
+    transform-origin: 50% 50%; 
+} 
+@keyframes bounce_7775 { 
+    0% { transform:translateY(0) } 
+    7.69231% { transform:translateY(0) } 
+    15.38462% { transform:translateY(0) } 
+    30.76923% { transform:translateY(-15px) } 
+    38.46154% { transform:translateY(0) } 
+    46.15385% { transform:translateY(-15px) } 
+    61.53846% { transform:translateY(0) } 
+    100% { transform:translateY(0) } 
+}

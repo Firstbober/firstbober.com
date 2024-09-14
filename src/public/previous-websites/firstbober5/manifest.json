@@ -1,0 +1,15 @@
+{
+    "name": "Firstbober Page",
+    "short_name": "Firstbober", 
+    "icons": [{ 
+      "src": "/img/230px-Tribar.svg.png", 
+      "sizes": "230x230", 
+      "type": "image/png" 
+    }], 
+    "theme_color": "#161616",
+    "start_url": "/index.html",
+    "background_color": "#161616",
+    "orientation":"portrait",
+    "scope":"\/",
+    "display": "standalone" 
+}
