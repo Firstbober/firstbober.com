@@ -1,0 +1,9 @@
+out = "./dist"
+
+templates = [
+  './src/index.html'
+]
+
+
+[inputs]
+projects = ['./projects.toml']
