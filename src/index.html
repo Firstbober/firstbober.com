@@ -69,40 +69,14 @@
         </div>
       </template>
 
-      <script type="module" templator>
-        const proj = getTemplate('big-project')
-
-        for(const [name, {link, img, stack}] of Object.entries(inputs.projects[0].big)) {
-          proj.new({
-            name,
-            link,
-            img,
-            stack
-          })
-        }
-      </script>
-
       <div class="projects">
-        <div class="big-project-showdown">
-          <a class="text-orange" href="https://github.com/Firstbober/wapanel">wapanel</a>
-          <img src="public/images/screenshots/wapanel.webp">
-          <small>c++ ; gtk3</small>
-        </div>
+        <script type="module" templator>
+          let proj = getTemplate('big-project')
 
-        <div class="big-project-showdown">
-          <a class="text-orange" href="https://github.com/Firstbober/rasagi">rasagi</a>
-          <img src="public/images/screenshots/rasagi.webp">
-          <small>typescript ; next.js ; mui</small>
-        </div>
-
-        <div class="big-project-showdown">
-          <a class="text-orange" href="https://firstbober.itch.io/de-shinde-burauza-no-web-gmu-ni-risupn-shita">De,
-            shinde
-            burauza no Web gēmu ni risupōn shita</a>
-          <img src="public/images/screenshots/de_shinde.webp">
-          <small>godot engine ; crayon.ai</small>
-        </div>
-      </div>
+          for(const [name, {link, img, stack}] of Object.entries(inputs.projects[0].big)) {
+            proj.new({name, link, img, stack});
+          }
+        </script>
     </section>
 
     <hr>
@@ -117,67 +91,21 @@
 
       <p></p>
 
+      <template id="small-project">
+        <a href="${link}" target="”_blank”">
+          <span>${name}</span>
+          <span>${stack}</span>
+        </a>
+      </template>
+
       <div class="flex-wrapped small-projects">
-        <a href="https://github.com/liquidev/netcanv" target="”_blank”">
-          <span>NetCanv</span>
-          <span>Rust, OpenGL</span>
-        </a>
-        <a href="https://wiki.postmarketos.org/wiki/Wiko_View_(wiko-v12bnlite)" target="”_blank”">
-          <span>pmOS for Wiko View</span>
-          <span>Linux, Low level, C</span>
-        </a>
-        <a href="#" target="”_blank”">
-          <span>Boberhole</span>
-          <span>Node.js, HTML, Express</span>
-        </a>
-        <a href="https://github.com/Firstbober/krita-rpc" target="”_blank”">
-          <span>krita-rpc</span>
-          <span>Krita, Python</span>
-        </a>
-        <a href="https://github.com/Firstbober/cpp-eval" target="”_blank”">
-          <span>cpp-eval</span>
-          <span>C++, Python</span>
-        </a>
-        <a href="https://github.com/Firstbober/cppxmled" target="”_blank”">
-          <span>cpp-xmled</span>
-          <span>C++, Python</span>
-        </a>
-        <a href="https://github.com/Firstbober/hmielOS" target="”_blank”">
-          <span>hmielOS</span>
-          <span>TypeScript</span>
-        </a>
-        <a href="https://github.com/Firstbober/discord-fs" target="”_blank”">
-          <span>discord-fs</span>
-          <span>FUSE, TypeScript, Node.js</span>
-        </a>
-        <a href="https://github.com/Firstbober/kremowkuj" target="”_blank”">
-          <span>kremowkuj</span>
-          <span>Rust</span>
-        </a>
-        <a href="https://github.com/Firstbober/objectifier" target="”_blank”">
-          <span>objectifier</span>
-          <span>C</span>
-        </a>
-        <a href="https://github.com/jdm-contrib/jdm" target="”_blank”">
-          <span>jdm</span>
-          <span>JSON</span>
-        </a>
-        <a href="https://github.com/olekolek1000/MPS" target="”_blank”">
-          <span>MPS</span>
-          <span>C++, OpenGL</span>
-        </a>
-        <a href="https://github.com/Firstbober/abridged-word2vec" target="”_blank”">
-          <span>abridged-word2vec</span>
-          <span>JavaScript</span>
-        </a>
-        <a href="https://github.com/comes-group/comes-adventures" target="”_blank”">
-          <span>comes-adventures</span>
-          <span>TypeScript, HTML</span>
-        </a>
-        <a href="https://github.com/Firstbober/berry" target="”_blank”">
-          <span>berry</span>
-          <span>TypeScript, SolidJS, Tailwind</span>
-        </a>
+        <script type="module" templator>
+          proj = getTemplate('small-project')
+
+          for(const [name, {link, stack}] of Object.entries(inputs.projects[0].small)) {
+            proj.new({name, link, stack});
+          }
+        </script>
       </div>
     </section>
 

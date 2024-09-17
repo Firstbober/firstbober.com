@@ -1,9 +1,11 @@
 out = "./dist"
+root = './src'
 
 templates = [
-  './src/index.html'
+  'index.html',
+  'some/i.html',
+  'some/x/l.html'
 ]
-
 
 [inputs]
 projects = ['./projects.toml']

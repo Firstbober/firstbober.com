@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from "fs";
-import { extname, dirname, resolve } from "path";
+import { existsSync, readFileSync, mkdirSync, writeFileSync, cpSync, rmSync } from "fs";
+import { extname, dirname, resolve, relative, join } from "path";
 import { exit } from "process";
 import { parseArgs } from "util";
 import { Glob } from "bun";
@@ -7,6 +7,7 @@ import { processHTML } from "./html";
 
 export interface Config {
   out: string,
+  root: string,
   templates: string[],
   inputs: {
     [key: string]: Array<string>
@@ -38,6 +39,10 @@ async function main() {
     console.error(`"out" is missing in config!`);
     return;
   }
+  if (config.root == undefined) {
+    console.error(`"root" is missing in config!`);
+    return;
+  }
   if (config.templates == undefined) {
     console.error(`"templates" are missing in config!`);
     return;
@@ -61,6 +66,8 @@ async function main() {
 
   // Resolve path for out
   config.out = resolve(config.out);
+  // Resolve path for root
+  config.root = resolve(config.root);
 
   // Resolve paths for templates and inputs
   const resolvedTemplates = []
@@ -69,7 +76,7 @@ async function main() {
 
     for await (const file of glob.scan({
       onlyFiles: true,
-      cwd: dirname(resolve(values['config']!)),
+      cwd: config.root,
       absolute: true,
     })) {
       if (!existsSync(file)) {
@@ -90,7 +97,7 @@ async function main() {
 
       for await (const file of glob.scan({
         onlyFiles: true,
-        cwd: dirname(resolve(values['config']!)),
+        cwd: config.root,
         absolute: true,
       })) {
         if (!existsSync(file)) {
@@ -108,15 +115,40 @@ async function main() {
   for (const inputKey of Object.keys(config.inputs)) {
     for (let i = 0; i < config.inputs[inputKey].length; i++) {
       const element = config.inputs[inputKey][i];
-      if(extname(element) == '.toml' || extname(element) == '.json') {
+      if (extname(element) == '.toml' || extname(element) == '.json') {
         config.inputs[inputKey][i] = (await import(element)).default;
       }
     }
   }
 
+  // Remove out directory if exists
+  if (existsSync(config.out)) {
+    rmSync(config.out, {
+      recursive: true
+    });
+  }
+  mkdirSync(config.out);
+
   // Process HTML files
   for (const template of config.templates) {
-    processHTML(config, readFileSync(template).toString());
+    console.info(`Processing ${template}...`)
+    const html = processHTML(config, readFileSync(template).toString());
+    console.info("Done! Writing to disk...");
+
+    const relativeTarget = relative(config.root, template);
+    const absoluteTarget = resolve(config.out, relativeTarget);
+    const directory = resolve(config.out, dirname(relativeTarget));
+
+    if(!existsSync(directory))
+      mkdirSync(directory);
+    writeFileSync(absoluteTarget, html);
   }
+
+  // Copy public
+  cpSync(join(config.root, 'public'), join(config.out, 'public'), {
+    recursive: true,
+    dereference: true,
+    errorOnExist: true
+  })
 }
 main();
