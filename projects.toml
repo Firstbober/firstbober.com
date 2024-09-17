@@ -1,76 +1,76 @@
 [big]
-  [wapanel]
+  [big.wapanel]
   link = 'https://github.com/Firstbober/wapanel'
   img = '/public/images/screenshots/wapanel.webp'
   stack = 'c++ ; gtk3'
 
-  [rasagi]
+  [big.rasagi]
   link = 'https://github.com/Firstbober/rasagi'
   img = '/public/images/screenshots/rasagi.webp'
   stack = 'typescript ; next.js ; mui'
 
-  ['De, shinde burauza no Web gēmu ni risupōn shita']
+  [big.'De, shinde burauza no Web gēmu ni risupōn shita']
   link = 'https://firstbober.itch.io/de-shinde-burauza-no-web-gmu-ni-risupn-shita'
   img = '/public/images/screenshots/de_shinde.webp'
   stack = 'godot engine ; crayon.ai'
 
 [small]
-  [NetCanv]
+  [small.NetCanv]
   link = 'https://github.com/liquidev/netcanv'
   stack = 'Rust, OpenGL'
 
-  ['pmOS for Wiko View']
+  [small.'pmOS for Wiko View']
   link = 'https://wiki.postmarketos.org/wiki/Wiko_View_(wiko-v12bnlite)'
   stack = 'Linux, Low level, C'
 
-  ['Boberhole']
+  [small.'Boberhole']
   link = '#'
   stack = 'Node.js, HTML, Express'
 
-  ['krita-rpc']
+  [small.'krita-rpc']
   link = 'https://github.com/Firstbober/krita-rpc'
   stack = 'Krita, Python'
 
-  ['cpp-eval']
+  [small.'cpp-eval']
   link = 'https://github.com/Firstbober/cpp-eval'
   stack = 'C++, Python'
 
-  ['cpp-xmled']
+  [small.'cpp-xmled']
   link = 'https://github.com/Firstbober/cppxmled'
   stack = 'C++, Python'
 
-  ['hmielOS']
+  [small.'hmielOS']
   link = 'https://github.com/Firstbober/hmielOS'
   stack = 'TypeScript'
 
-  ['discord-fs']
+  [small.'discord-fs']
   link = 'https://github.com/Firstbober/discord-fs'
   stack = 'FUSE, TypeScript, Node.js'
 
-  ['kremowkuj']
+  [small.'kremowkuj']
   link = 'https://github.com/Firstbober/kremowkuj'
   stack = 'Rust'
 
-  ['objectifier']
+  [small.'objectifier']
   link = 'https://github.com/Firstbober/objectifier'
   stack = 'C'
 
-  ['jdm']
+  [small.'jdm']
   link = 'https://github.com/jdm-contrib/jdm'
   stack = 'JSON'
 
-  ['MPS']
+  [small.'MPS']
   link = 'https://github.com/olekolek1000/MPS'
   stack = 'C++, OpenGL'
 
-  ['abridged-word2vec']
+  [small.'abridged-word2vec']
   link = 'https://github.com/Firstbober/abridged-word2vec'
   stack = 'JavaScript'
 
-  ['comes-adventures']
+  [small.'comes-adventures']
   link = 'https://github.com/comes-group/comes-adventures'
   stack = 'TypeScript, HTML'
 
-  ['berry']
+  [small.'berry']
   link = 'https://github.com/Firstbober/berry'
   stack = 'TypeScript, SolidJS, Tailwind'
