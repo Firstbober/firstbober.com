@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
     rel="stylesheet">
 
-
   <link rel="stylesheet" href="public/background-images.css">
   <link rel="stylesheet" href="public/style.css">
 </head>
@@ -61,6 +60,27 @@
         anything that took much longer than expected, and
         shows result for it
       </small>
+
+      <template id="big-project">
+        <div class="big-project-showdown">
+          <a class="text-orange" href="${link}">${name}</a>
+          <img src="${img}">
+          <small>${stack}</small>
+        </div>
+      </template>
+
+      <script type="module" templator>
+        const proj = getTemplate('big-project')
+
+        for(const [name, {link, img, stack}] of Object.entries(inputs.projects[0].big)) {
+          proj.new({
+            name,
+            link,
+            img,
+            stack
+          })
+        }
+      </script>
 
       <div class="projects">
         <div class="big-project-showdown">
