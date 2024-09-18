@@ -1,7 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   min-height: 100vh;
   font-family: monospace;
   --vfd-shadow-blur: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 #bg-overlay {
