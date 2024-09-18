@@ -13,7 +13,8 @@ export interface Config {
   inputObjects: {
     [key: string]: Array<any>
   },
-  watch?: string
+  watch?: string,
+  baseurl: string
 }
 
 export async function readConfig(configPath: string): Promise<Config | undefined> {

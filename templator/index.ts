@@ -136,8 +136,11 @@ async function main() {
         type: 'string'
       },
       watch: {
-        default: '8080',
         type: 'string'
+      },
+      baseurl: {
+        type: 'string',
+        default: 'http://localhost'
       },
       help: {
         short: 'h',
@@ -154,12 +157,13 @@ Usage: ${Bun.argv[1]} [OPTION]...
 Transforms .html template files via "<script templator>...</script>"
 
 Optional arguments:
-      --config [PATH]       path to templator config
-      --watch  [PORT]       watches the config and related directories + serves them
-      -h, --help            displays this message
+      --config  [PATH]       path to templator config
+      --baseurl [URL]        path to templator config
+      --watch   [PORT]       watches the config and related directories + serves them
+      -h, --help             displays this message
 
 [PATH] is './templator.toml' by default
-[PORT] is 8080 by default
+[URL]  is 'http://localhost:[PORT]' by default, change when on production
 `)
     exit(0);
   }
@@ -176,6 +180,9 @@ Optional arguments:
     exit(1);
   }
   config.watch = values['watch'];
+  config.baseurl = values['baseurl']!;
+
+  console.log(config.inputs)
 
   await build(config);
 

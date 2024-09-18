@@ -37,6 +37,7 @@ function processScripts(config: Config, $: cheerio.CheerioAPI, templates: Templa
 
   // Register global values
   registerValue("inputs", config.inputObjects);
+  registerValue("baseurl", config.baseurl);
 
   // Get found template by ID
   registerValue("getTemplate", (id: string) => {
