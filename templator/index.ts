@@ -41,47 +41,64 @@ async function build(config: Config) {
 async function watchForChanges(baseConfig: Config, configPath: string, configDirectory: string) {
   let configToUse = baseConfig;
 
+  // Logic needed for live reload to work
+  let resolveRefreshPromise: () => void;
+  let refreshPromise: Promise<void> = new Promise((resolve) => {
+    resolveRefreshPromise = resolve;
+  });
+
+  // Handle updates in root directory
   const rootWatcherHandler: fs.WatchListener<string> = async (event, filename) => {
     console.log('-----------------------------');
     console.log(`Detected ${event} in ${filename}`);
     console.log('-----------------------------');
 
-    if(filename == null) return;
+    if (filename == null) return;
     const resolvedPath = resolve(configToUse.root, filename);
 
     // If resolved path is one of templates
-    if(configToUse.templates.includes(resolvedPath)) {
-      return await build(configToUse);
+    if (configToUse.templates.includes(resolvedPath)) {
+      await build(configToUse);
+      resolveRefreshPromise();
+      refreshPromise = new Promise((resolve) => resolveRefreshPromise = resolve);
+      return;
     }
 
     // If resolved path is one of inputs
     for (const inputKey of Object.keys(configToUse.inputs)) {
-      if(configToUse.inputs[inputKey].includes(resolvedPath)) {
-        return await build(configToUse);
+      if (configToUse.inputs[inputKey].includes(resolvedPath)) {
+        await build(configToUse);
+        resolveRefreshPromise();
+        refreshPromise = new Promise((resolve) => resolveRefreshPromise = resolve);
+        return;
       }
     }
 
     // If resolved path starts with public
-    if(dirname(resolvedPath).endsWith('/public')) {
+    if (dirname(resolvedPath).endsWith('/public')) {
       // Copy public
       fs.cpSync(join(configToUse.root, 'public'), join(configToUse.out, 'public'), {
         recursive: true,
         dereference: true,
         force: true
       })
+      resolveRefreshPromise();
+      refreshPromise = new Promise((resolve) => resolveRefreshPromise = resolve);
     }
   };
 
+  // Start watching root directory
   let rootWatcher = fs.watch(configToUse.root, { recursive: true }, rootWatcherHandler);
 
-  const configWatcher = fs.watchFile(configPath, async (event, filename) => {
+  // Watch config
+  fs.watchFile(configPath, async (event, filename) => {
     console.log('-----------------------------');
     console.log('config changed... updating internal state...')
     console.log('-----------------------------');
     rootWatcher.close();
 
     const newConfig = await readConfig(configPath);
-    if(newConfig == undefined) exit(1);
+    if (newConfig == undefined) exit(1);
     configToUse = newConfig;
 
     rootWatcher = fs.watch(configToUse.root, { recursive: true }, rootWatcherHandler);
@@ -89,6 +106,25 @@ async function watchForChanges(baseConfig: Config, configPath: string, configDir
     return await build(configToUse);
   });
 
+  // Start live update server
+  Bun.serve({
+    port: configToUse.watch,
+    async fetch(req) {
+      let httpPath = new URL(req.url).pathname;
+
+      if (httpPath == '/') httpPath = '/index.html';
+      if (httpPath == '/templator/watch' && refreshPromise != undefined) {
+        await refreshPromise;
+        console.log(`===> Sent update to client!`);
+        return new Response('update :)');
+      }
+
+      const path = join(configToUse.out, httpPath);
+      const file = Bun.file(path);
+      return new Response(file);
+    },
+  });
+  console.log(`===> Server is on ${configToUse.watch}`);
 }
 
 async function main() {
