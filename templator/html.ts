@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import type { Config } from '.';
+import type { Config } from './config';
 
 interface Template {
   html: string,
