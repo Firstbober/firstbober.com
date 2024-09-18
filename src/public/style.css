@@ -249,6 +249,7 @@ p {
     padding-left: calc(10vw - 80px);
     align-items: flex-start;
     text-align: left;
+    max-width: 800px;
   }
 
   hr {

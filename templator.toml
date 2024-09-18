@@ -3,9 +3,9 @@ root = './src'
 
 templates = [
   'index.html',
-  'some/i.html',
-  'some/x/l.html'
+  'blog/index.html'
 ]
 
 [inputs]
 projects = ['./projects.toml']
+blog-pages = ['./blog/posts/*.md']
