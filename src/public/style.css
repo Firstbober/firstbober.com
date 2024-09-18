@@ -35,6 +35,7 @@
   --vfd-orange: #ffb870; */
 
   --vfd-white: rgba(239, 254, 251, 0.85);
+  --vfd-white-solid: rgba(239, 254, 251, 0.85);
   --vfd-yellow: #FFFF33;
   --vfd-red: #ce3b25;
   --vfd-cyan: #c4fff9;
@@ -42,7 +43,7 @@
 
   --vfd-shadow-blur: 12px;
 
-  font-family: DsDigit;
+  font-family: DsDigit, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: italic;
 
   color-scheme: light dark;
@@ -54,6 +55,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   box-sizing: border-box;
+  color: rgba(239, 254, 251, 0.85);
 
   font-size: 1.5rem;
 }
@@ -115,6 +117,7 @@ h6 {
   color: var(--vfd-cyan);
   text-shadow: 0px 0px var(--vfd-shadow-blur) var(--vfd-cyan);
 }
+
 
 .text-orange {
   color: var(--vfd-orange);
