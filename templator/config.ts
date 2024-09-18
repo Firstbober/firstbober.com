@@ -10,11 +10,14 @@ export interface Config {
   inputs: {
     [key: string]: Array<string>
   },
+  inputObjects: {
+    [key: string]: Array<any>
+  },
   watch?: string
 }
 
 export async function readConfig(configPath: string): Promise<Config | undefined> {
-  let config: Config = Object.fromEntries(Object.entries((await import(configPath) as any).default)) as any;
+  let config: Config = Object.fromEntries(Object.entries((await import(`${configPath}?version=${Date.now()}`) as any).default)) as any;
 
   // Check existance of necessary values
   if (config.out == undefined) {
@@ -71,12 +74,10 @@ export async function readConfig(configPath: string): Promise<Config | undefined
   config.templates = resolvedTemplates;
 
   // Resolve paths for inputs
-
   for (const [key, val] of Object.entries(config.inputs)) {
     const resolvedKey = []
     for (const input of val) {
       const glob = new Glob(input);
-
       for await (const file of glob.scan({
         onlyFiles: true,
         cwd: config.root,
@@ -94,11 +95,13 @@ export async function readConfig(configPath: string): Promise<Config | undefined
   if (hasErrors) exit(1);
 
   // Inputs to objects when possible
+  config.inputObjects = {}
   for (const inputKey of Object.keys(config.inputs)) {
+    config.inputObjects[inputKey] = [];
     for (let i = 0; i < config.inputs[inputKey].length; i++) {
       const element = config.inputs[inputKey][i];
       if (extname(element) == '.toml' || extname(element) == '.json') {
-        config.inputs[inputKey][i] = (await import(element)).default;
+        config.inputObjects[inputKey][i] = (await import(`${element}?version=${Date.now()}`)).default;
       }
     }
   }
