@@ -2,10 +2,9 @@ out = "./dist"
 root = './src'
 
 templates = [
-  'index.html',
-  'blog/index.html'
+  'index.html'
 ]
 
 [inputs]
 projects = ['./projects.toml']
-blog-pages = ['./blog/posts/*.md']
+blog-pages = ['./blog/posts/**/*.md']
