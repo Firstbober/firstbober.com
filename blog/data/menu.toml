@@ -1,0 +1,36 @@
+[[entries]]
+title = "info"
+
+  [[entries.entries]]
+  title = "Just a place for the stream of thought."
+
+  [[entries.entries]]
+  title = "main page"
+  url = "https://firstbober.com"
+
+  [[entries.entries]]
+  title = "x (oh god i hate this)"
+  url = "https://twitter.com/firstbober"
+
+  [[entries.entries]]
+  title = "github"
+  url = "https://github.com/Firstbober"
+
+  [[entries.entries]]
+  title = "rss"
+  url = "index.xml"
+
+[[entries]]
+title = "all posts"
+
+  [entries.post_list]
+  limit = 10
+  show_more = true
+  show_more_text = "See archive..."
+  show_more_url = "posts"
+
+[[entries]]
+title = "——————————————————————————————————————————————————————————————"
+
+[[entries]]
+title = "\"You can't connect the dots looking forward; you can only connect them looking backwards.\" — Steve Jobs"

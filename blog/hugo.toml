@@ -1,0 +1,21 @@
+baseURL = 'https://firstbober.com/blog'
+languageCode = 'en-us'
+title = "The Firstbober's Den"
+theme = "nostyleplease"
+relURL = 'https://firstbober.com/blog'
+
+disqusShortname = 'firstbober-blog'
+
+[params]
+  title = "The Firstbober's Den"
+  description = 'Not everyone must be sane.'
+
+  [params.theme_config]
+    appearance = "dark"
+    back_home_text = "home"
+    date_format = "2006-01-02"
+
+[markup]
+  [markup.highlight]
+    tabWidth = 2
+    style = "bw"

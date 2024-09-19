@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ partial "back_link.html" .}}
+
+<article>
+    <div style="display: flex; margin-top: 1em;">
+        <div>
+            {{ range (.GetTerms "tags") }}
+                <a href="{{ .Permalink }}" style="font-size: 0.8em; color: gray;">{{ .LinkTitle }}</a>
+            {{ end }}
+        </div>
+
+        <time datetime="{{ .Date }}" style="margin-left: auto;">
+            {{ .Date | time.Format site.Params.theme_config.date_format }}
+        </time>
+    </div>
+
+    <h1>{{ .Title }}</h1>
+
+    {{ if .Params.toc }}
+        <aside {{ if .Params.tocBorder }} class="toc" {{ end }}>
+            {{ .TableOfContents }}
+        </aside>
+    {{ end }}
+
+    {{ .Content }}
+
+    {{ template "_internal/disqus.html" . }}
+</article>
+{{ end }}
